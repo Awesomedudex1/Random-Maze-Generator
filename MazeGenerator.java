@@ -7,20 +7,32 @@ public class MazeGenerator {
 	static int mazeY = 0;
 	static int mazeX = 0;
 	static boolean won = false;
-	// ada
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Y Height of the maze: ");
-		inputmazeY = sc.nextLine();
-		System.out.print("X Height of the maze: ");
-		inputmazeX = sc.nextLine();
-		
-		
-		
-		mazeY = Integer.parseInt(inputmazeY);
-		mazeX = Integer.parseInt(inputmazeX);
-		mazeY += 4;
-		mazeX += 4;
+		boolean dimensionsWork = false;
+		while(dimensionsWork == false) {
+			try {
+				System.out.print("Height of the maze: ");
+				inputmazeY = sc.nextLine();
+				System.out.print("Width of the maze: ");
+				inputmazeX = sc.nextLine();
+				inputmazeX = inputmazeX.trim();
+				inputmazeY = inputmazeY.trim();
+				
+				mazeY = Integer.parseInt(inputmazeY);
+				mazeY *= 2;
+				mazeY += 4;
+				mazeX = Integer.parseInt(inputmazeX);
+				mazeX *= 2;
+				mazeX += 4;	
+				dimensionsWork = true;
+				
+			}
+			catch(Exception e){
+				System.out.println("Please input numbers");
+			}
+		}
 		if (mazeY % 2 == 0) {
 			mazeY += 1;
 		}
@@ -35,5 +47,6 @@ public class MazeGenerator {
 			MazeGeneratorCode.ShowMaze();
 			MazeGeneratorCode.Movement();
 		}
+		sc.close();
 	}
 }
